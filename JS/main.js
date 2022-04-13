@@ -1809,6 +1809,7 @@ sapleAnswers = [
 ];
 
   initLocalStorage();
+  initLoadHowToPlay();
   initHowToPlayModal();
   initStatsModal();
   loadLocalStorage();
@@ -1853,6 +1854,34 @@ sapleAnswers = [
     }
   }
 
+  function initLoadHowToPlay() {
+    const totalGames =
+      window.localStorage.getItem("totalGames");
+      guessedWordCount =
+      Number(window.localStorage.getItem("guessedWordCount"));
+    if (!totalGames && !guessedWordCount) {
+      const howToPlayModal = document.getElementById("how-to-play-modal");
+
+      // Get the <span> element that closes the modal
+      const span = document.getElementById("close-how-to-play");
+
+      // Open the modal
+      howToPlayModal.style.display = "block";
+
+      // When the user clicks on <span> (x), close the modal
+      span.addEventListener("click", function () {
+        howToPlayModal.style.display = "none";
+      });
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.addEventListener("click", function (event) {
+        if (event.target == howToPlayModal) {
+        howToPlayModal.style.display = "none";
+        }
+      });
+   }
+}
+  
   petName = list.find(({name}) => name === pet).name;
   petPack = list.find(({name}) => name === pet).pack;
   petTier = list.find(({name}) => name === pet).tier;
@@ -2016,6 +2045,9 @@ function submitGuess(event) {
     if (packCell.innerHTML === petPack) {
       packCell.style.backgroundColor = "rgb(14 159 110)";
     }
+    else {
+      packCell.style.backgroundColor = "rgb(226 232 240)";
+    }
     tierCell = tableRow.insertCell(2);
     result = list.find(({name}) => name === guess);
     result = result.tier;
@@ -2027,6 +2059,9 @@ function submitGuess(event) {
     else if (Math.abs(parseInt(tierCell.innerHTML) - petTier) <= 2) {
       tierCell.style.backgroundColor = "rgb(252, 202, 21)";
     }
+    else {
+      tierCell.style.backgroundColor = "rgb(226 232 240)";
+    }
     roleCell = tableRow.insertCell(3);
     result = list.find(({name}) => name === guess);
     result = result.role;
@@ -2035,6 +2070,9 @@ function submitGuess(event) {
     if (roleCell.innerHTML === petRole) {
       roleCell.style.backgroundColor = "rgb(14 159 110)";
     }
+    else {
+      roleCell.style.backgroundColor = "rgb(226 232 240)";
+    }
     level1TriggerAbilityCell = tableRow.insertCell(4);
     result = list.find(({name}) => name === guess);
     result = result.level1TriggerAbility;
@@ -2042,6 +2080,9 @@ function submitGuess(event) {
     level1TriggerAbilityCell.style.padding = "32px 1px";
     if (level1TriggerAbilityCell.innerHTML === petLevel1TriggerAbility) {
       level1TriggerAbilityCell.style.backgroundColor = "rgb(14 159 110)";
+    }
+    else {
+      level1TriggerAbilityCell.style.backgroundColor = "rgb(226 232 240)";
     }
     baseAttackCell = tableRow.insertCell(5);
     result = list.find(({name}) => name === guess);
@@ -2054,6 +2095,9 @@ function submitGuess(event) {
     else if (Math.abs(parseInt(baseAttackCell.innerHTML) - petBaseAttack) <= 2) {
       baseAttackCell.style.backgroundColor = "rgb(252, 202, 21)";
     }
+    else {
+      baseAttackCell.style.backgroundColor = "rgb(226 232 240)";
+    }
     baseHealthCell = tableRow.insertCell(6);
     result = list.find(({name}) => name === guess);
     result = result.baseHealth;
@@ -2064,6 +2108,9 @@ function submitGuess(event) {
     }
     else if (Math.abs(parseInt(baseHealthCell.innerHTML) - petBaseHealth) <= 2) {
       baseHealthCell.style.backgroundColor = "rgb(252, 202, 21)";
+    }
+    else {
+      baseHealthCell.style.backgroundColor = "rgb(226 232 240)";
     }
 
     guessedWordCount += 1;
