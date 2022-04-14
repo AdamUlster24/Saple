@@ -5,7 +5,6 @@ let haveGuessed = false;
 let now = new Date();
 let firstDate = new Date(2022, 3, 13, 0, 0, 0, 0);
 let desiredCurrentWordIndex = Math.floor(Number(now - firstDate) / 1000 / 60 / 60 / 24);
-
 let list = [
   {
     name: "Ant",
@@ -346,8 +345,8 @@ let list = [
     tier: 4,
     role: "Scaler",
     level1TriggerAbility: "End turn",
-    baseAttack: 6,
-    baseHealth: 6
+    baseAttack: 4,
+    baseHealth: 4
   },
   {
     name: "Deer",
@@ -382,8 +381,8 @@ let list = [
     tier: 4,
     role: "Special",
     level1TriggerAbility: "End turn",
-    baseAttack: 6,
-    baseHealth: 3
+    baseAttack: 4,
+    baseHealth: 2
   },
   {
     name: "Penguin",
@@ -778,8 +777,8 @@ let list = [
     tier: 4,
     role: "Scaler",
     level1TriggerAbility: "Friend sold",
-    baseAttack: 5,
-    baseHealth: 5
+    baseAttack: 4,
+    baseHealth: 4
   },
   {
     name: "Llama",
@@ -831,7 +830,7 @@ let list = [
     pack: "Expansion #1",
     tier: 5,
     role: "Economist",
-    level1TriggerAbility: "Friend bought",
+    level1TriggerAbility: "Buy friend",
     baseAttack: 4,
     baseHealth: 6
   },
@@ -877,8 +876,8 @@ let list = [
     tier: 1,
     role: "Food",
     level1TriggerAbility: "Sell",
-    baseAttack: 2,
-    baseHealth: 1
+    baseAttack: 1,
+    baseHealth: 2
   },
   {
     name: "Cockroach",
@@ -935,15 +934,6 @@ let list = [
     baseHealth: 2
   },
   {
-    name: "Panda",
-    pack: "Expansion #2",
-    tier: 1,
-    role: "Scaler",
-    level1TriggerAbility: "Start of battle",
-    baseAttack: 2,
-    baseHealth: 4
-  },
-  {
     name: "Pillbug",
     pack: "Expansion #2",
     tier: 1,
@@ -957,7 +947,7 @@ let list = [
     pack: "Expansion #2",
     tier: 1,
     role: "Disruptor/Sniper",
-    level1TriggerAbility: "Faint",
+    level1TriggerAbility: "Start of battle",
     baseAttack: 2,
     baseHealth: 3
   },
@@ -1004,7 +994,7 @@ let list = [
     role: "Tempo",
     level1TriggerAbility: "Faint",
     baseAttack: 2,
-    baseHealth: 3
+    baseHealth: 2
   },
   {
     name: "Peach",
@@ -1064,7 +1054,7 @@ let list = [
     name: "Guinea Pig",
     pack: "Expansion #2",
     tier: 2,
-    role: "Summoner",
+    role: "Economist",
     level1TriggerAbility: "Buy",
     baseAttack: 1,
     baseHealth: 1
@@ -1074,7 +1064,7 @@ let list = [
     pack: "Expansion #2",
     tier: 2,
     role: "Special",
-    level1TriggerAbility: "Friends level-up",
+    level1TriggerAbility: "Any level-up",
     baseAttack: 2,
     baseHealth: 3
   },
@@ -1083,9 +1073,18 @@ let list = [
     pack: "Expansion #2",
     tier: 2,
     role: "Tempo",
-    level1TriggerAbility: "Friend behind hurt",
+    level1TriggerAbility: "Friend hurt",
     baseAttack: 1,
     baseHealth: 2
+  },
+  {
+    name: "Panda",
+    pack: "Expansion #2",
+    tier: 2,
+    role: "Scaler",
+    level1TriggerAbility: "Start of battle",
+    baseAttack: 2,
+    baseHealth: 4
   },
   {
     name: "Pug",
@@ -1209,7 +1208,7 @@ let list = [
     pack: "Expansion #2",
     tier: 3,
     role: "Special",
-    level1TriggerAbility: "Friend level-up",
+    level1TriggerAbility: "Any level-up",
     baseAttack: 2,
     baseHealth: 3
   },
@@ -1237,8 +1236,8 @@ let list = [
     tier: 3,
     role: "Tempo",
     level1TriggerAbility: "Roll",
-    baseAttack: 1,
-    baseHealth: 2
+    baseAttack: 2,
+    baseHealth: 3
   },
   {
     name: "Starfish",
@@ -1430,6 +1429,15 @@ let list = [
     baseHealth: 6
   },
   {
+    name: "Crow",
+    pack: "Expansion #2",
+    tier: 4,
+    role: "Special",
+    level1TriggerAbility: "Sell",
+    baseAttack: 3,
+    baseHealth: 3
+  },
+  {
     name: "Dragonfly",
     pack: "Expansion #2",
     tier: 4,
@@ -1574,6 +1582,15 @@ let list = [
     baseHealth: 6
   },
   {
+    name: "Vulture",
+    pack: "Expansion #2",
+    tier: 5,
+    role: "Disruptor/Sniper",
+    level1TriggerAbility: "Friend faints",
+    baseAttack: 4,
+    baseHealth: 3
+  },
+  {
     name: "Zebra",
     pack: "Expansion #2",
     tier: 5,
@@ -1581,15 +1598,6 @@ let list = [
     level1TriggerAbility: "Buy & Sell",
     baseAttack: 3,
     baseHealth: 5
-  },
-  {
-    name: "Crow",
-    pack: "Expansion #2",
-    tier: 5,
-    role: "Special",
-    level1TriggerAbility: "Sell",
-    baseAttack: 3,
-    baseHealth: 3
   },
   {
     name: "Hyena",
@@ -1622,19 +1630,10 @@ let list = [
     name: "Moose",
     pack: "Expansion #2",
     tier: 5,
-    role: "Scaler",
+    role: "Buffer",
     level1TriggerAbility: "End turn",
     baseAttack: 5,
     baseHealth: 6
-  },
-  {
-    name: "Tapir",
-    pack: "Expansion #2",
-    tier: 5,
-    role: "Summoner",
-    level1TriggerAbility: "Faint",
-    baseAttack: 4,
-    baseHealth: 3
   },
   {
     name: "Pepper",
@@ -1678,8 +1677,8 @@ let list = [
     tier: 6,
     role: "Economist",
     level1TriggerAbility: "Start of turn",
-    baseAttack: 6,
-    baseHealth: 6
+    baseAttack: 5,
+    baseHealth: 5
   },
   {
     name: "Komodo",
@@ -1703,7 +1702,7 @@ let list = [
     name: "Ostrich",
     pack: "Expansion #2",
     tier: 6,
-    role: "Buffer",
+    role: "Scaler",
     level1TriggerAbility: "End turn",
     baseAttack: 2,
     baseHealth: 8
@@ -1741,17 +1740,8 @@ let list = [
     tier: 6,
     role: "Tempo",
     level1TriggerAbility: "Start of battle",
-    baseAttack: 5,
-    baseHealth: 4
-  },
-  {
-    name: "Vulture",
-    pack: "Expansion #2",
-    tier: 6,
-    role: "Disruptor/Sniper",
-    level1TriggerAbility: "Friend faints",
-    baseAttack: 4,
-    baseHealth: 3
+    baseAttack: 3,
+    baseHealth: 2
   },
   {
     name: "Alpaca",
@@ -1761,6 +1751,15 @@ let list = [
     level1TriggerAbility: "Friend summoned",
     baseAttack: 4,
     baseHealth: 9
+  },
+  {
+    name: "Tapir",
+    pack: "Expansion #2",
+    tier: 6,
+    role: "Summoner",
+    level1TriggerAbility: "Faint",
+    baseAttack: 4,
+    baseHealth: 3
   },
   {
     name: "Walrus",
@@ -2143,10 +2142,19 @@ let sapleAnswers = [
 ];
 
   initLocalStorage();
-  initLoadHowToPlay();
   initHowToPlayModal();
   initStatsModal();
   loadLocalStorage();
+
+  if (desiredCurrentWordIndex === currentWordIndex && haveGuessed === "false") {
+    //This is the case whenever the word has not been guessed
+
+    //Should run at when the indexes are the same and there is no guess
+    clearBoard();
+    resetGameState();
+  }
+
+  loadHowToPlay();
 
   function initLocalStorage() {
     const storedCurrentWordIndex =
@@ -2174,7 +2182,6 @@ let sapleAnswers = [
     guessedWordCount =
       Number(window.localStorage.getItem("guessedWordCount")) ||
       guessedWordCount;
-
     pet = sapleAnswers[currentWordIndex];
 
     haveGuessed =
@@ -2188,10 +2195,10 @@ let sapleAnswers = [
     }
   }
 
-  function initLoadHowToPlay() {
+  function loadHowToPlay() {
     const totalGames =
       window.localStorage.getItem("totalGames");
-      guessedWordCount =
+    guessedWordCount =
       Number(window.localStorage.getItem("guessedWordCount"));
     if (!totalGames && !guessedWordCount) {
       const howToPlayModal = document.getElementById("how-to-play-modal");
@@ -2225,13 +2232,7 @@ let sapleAnswers = [
   petBaseHealth = list.find(({name}) => name === pet).baseHealth;
 
 
-  if (desiredCurrentWordIndex === currentWordIndex && haveGuessed === "false") {
-    //This is the case whenever the word has not been guessed
-
-    //Should run at when the indexes are the same and there is at least a guess
-    clearBoard();
-    resetGameState();
-  }
+  
   
   if (desiredCurrentWordIndex != currentWordIndex ) {
     document.getElementById("input").style.visibility="hidden";
@@ -2248,6 +2249,8 @@ let sapleAnswers = [
 
   function resetGameState() {
     window.localStorage.removeItem("guessedWordCount");
+    console.log(guessedWordCount)
+
     window.localStorage.removeItem("table");
     window.localStorage.removeItem("haveGuessed");
   }
@@ -2412,7 +2415,7 @@ function submitGuess(event) {
     result = result.level1TriggerAbility;
     level1TriggerAbilityCell.innerHTML = result;
     level1TriggerAbilityCell.style.padding = "32px 1px";
-    if (level1TriggerAbilityCell.innerHTML === petLevel1TriggerAbility) {
+    if (level1TriggerAbilityCell.innerText === petLevel1TriggerAbility) {
       level1TriggerAbilityCell.style.backgroundColor = "rgb(14 159 110)";
     }
     else {
@@ -2449,6 +2452,7 @@ function submitGuess(event) {
 
     guessedWordCount += 1;
     window.localStorage.setItem("guessedWordCount", guessedWordCount);
+    
     preserveGameState();
     
     if (guess === pet) {
