@@ -156,8 +156,8 @@
     margin-top: 20px;
     font-size: 15px;
   }
-  #guess:focus {
-    outline-color: #719ECE;
+  #input:focus {
+    outline-color: #ceb771;
   }
   ul {
       list-style: none;

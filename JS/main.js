@@ -2153,9 +2153,7 @@ let sapleAnswers = [
     clearBoard();
     resetGameState();
   }
-
   loadHowToPlay();
-
   function initLocalStorage() {
     const storedCurrentWordIndex =
       window.localStorage.getItem("currentWordIndex");
@@ -2197,7 +2195,7 @@ let sapleAnswers = [
 
   function loadHowToPlay() {
     const totalGames =
-      window.localStorage.getItem("totalGames");
+      Number(window.localStorage.getItem("totalGames"));
     guessedWordCount =
       Number(window.localStorage.getItem("guessedWordCount"));
     if (!totalGames && !guessedWordCount) {
@@ -2230,9 +2228,6 @@ let sapleAnswers = [
   petLevel1TriggerAbility = list.find(({name}) => name === pet).level1TriggerAbility;
   petBaseAttack = list.find(({name}) => name === pet).baseAttack;
   petBaseHealth = list.find(({name}) => name === pet).baseHealth;
-
-
-  
   
   if (desiredCurrentWordIndex != currentWordIndex ) {
     document.getElementById("input").style.visibility="hidden";
@@ -2249,8 +2244,6 @@ let sapleAnswers = [
 
   function resetGameState() {
     window.localStorage.removeItem("guessedWordCount");
-    console.log(guessedWordCount)
-
     window.localStorage.removeItem("table");
     window.localStorage.removeItem("haveGuessed");
   }
@@ -2336,7 +2329,7 @@ input.addEventListener("keyup", function() {
       word += i.substring(input.value.length);
       //Display the value in the array
       listItem.innerHTML = word;
-      if(document.querySelectorAll(".list-items").length <= 2) {
+      if (document.querySelectorAll(".list-items").length <= 2) {
         document.querySelector(".list").appendChild(listItem);
       }
     }
