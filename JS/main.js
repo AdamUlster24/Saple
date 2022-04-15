@@ -2145,6 +2145,7 @@ let sapleAnswers = [
   initHowToPlayModal();
   initStatsModal();
   loadLocalStorage();
+  loadHowToPlay();
 
   if (desiredCurrentWordIndex === currentWordIndex && haveGuessed === "false") {
     //This is the case whenever the word has not been guessed
@@ -2153,7 +2154,6 @@ let sapleAnswers = [
     clearBoard();
     resetGameState();
   }
-  loadHowToPlay();
   function initLocalStorage() {
     const storedCurrentWordIndex =
       window.localStorage.getItem("currentWordIndex");
@@ -2196,9 +2196,7 @@ let sapleAnswers = [
   function loadHowToPlay() {
     const totalGames =
       Number(window.localStorage.getItem("totalGames"));
-    guessedWordCount =
-      Number(window.localStorage.getItem("guessedWordCount"));
-    if (!totalGames && !guessedWordCount) {
+    if (!totalGames) {
       const howToPlayModal = document.getElementById("how-to-play-modal");
 
       // Get the <span> element that closes the modal
