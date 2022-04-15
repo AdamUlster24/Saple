@@ -2147,13 +2147,6 @@ let sapleAnswers = [
   loadLocalStorage();
   loadHowToPlay();
 
-  if (desiredCurrentWordIndex === currentWordIndex && haveGuessed === "false") {
-    //This is the case whenever the word has not been guessed
-
-    //Should run at when the indexes are the same and there is no guess
-    clearBoard();
-    resetGameState();
-  }
   function initLocalStorage() {
     const storedCurrentWordIndex =
       window.localStorage.getItem("currentWordIndex");
@@ -2226,6 +2219,14 @@ let sapleAnswers = [
   petLevel1TriggerAbility = list.find(({name}) => name === pet).level1TriggerAbility;
   petBaseAttack = list.find(({name}) => name === pet).baseAttack;
   petBaseHealth = list.find(({name}) => name === pet).baseHealth;
+
+  if (desiredCurrentWordIndex === currentWordIndex && haveGuessed == "false") {
+    //This is the case whenever the word has not been guessed
+
+    //Should run at when the indexes are the same and there is no guess
+    clearBoard();
+    resetGameState();
+  }
   
   if (desiredCurrentWordIndex != currentWordIndex ) {
     document.getElementById("input").style.visibility="hidden";
