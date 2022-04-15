@@ -2142,10 +2142,10 @@ let sapleAnswers = [
 ];
 
   initLocalStorage();
+  loadHowToPlay();
   initHowToPlayModal();
   initStatsModal();
   loadLocalStorage();
-  loadHowToPlay();
 
   function initLocalStorage() {
     const storedCurrentWordIndex =
