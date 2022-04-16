@@ -1,4 +1,3 @@
-let pet;
 let currentWordIndex = 0;
 let guessedWordCount = 0;
 let haveGuessed = false;
@@ -2141,10 +2140,13 @@ let sapleAnswers = [
   "Tabby Cat"
 ];
 
+let pet = sapleAnswers[currentWordIndex]
+
   initLocalStorage();
-  loadHowToPlay();
+  checkIfPlayedYesterday();
   initHowToPlayModal();
   initStatsModal();
+  loadHowToPlay();
   loadLocalStorage();
 
   function initLocalStorage() {
@@ -2186,10 +2188,20 @@ let sapleAnswers = [
     }
   }
 
+  function checkIfPlayedYesterday() {
+    if (desiredCurrentWordIndex > currentWordIndex) {
+      currentWordIndex = desiredCurrentWordIndex;
+      window.localStorage.setItem("currentWordIndex", currentWordIndex);
+      pet = sapleAnswers[currentWordIndex]
+    }
+  }
+
   function loadHowToPlay() {
     const totalGames =
       Number(window.localStorage.getItem("totalGames"));
-    if (!totalGames) {
+    guessedWordCount =
+      Number(window.localStorage.getItem("guessedWordCount"));
+    if (!totalGames && !guessedWordCount) {
       const howToPlayModal = document.getElementById("how-to-play-modal");
 
       // Get the <span> element that closes the modal
@@ -2219,7 +2231,7 @@ let sapleAnswers = [
   petLevel1TriggerAbility = list.find(({name}) => name === pet).level1TriggerAbility;
   petBaseAttack = list.find(({name}) => name === pet).baseAttack;
   petBaseHealth = list.find(({name}) => name === pet).baseHealth;
-
+  
   if (desiredCurrentWordIndex === currentWordIndex && haveGuessed == "false") {
     //This is the case whenever the word has not been guessed
 
@@ -2227,17 +2239,17 @@ let sapleAnswers = [
     clearBoard();
     resetGameState();
   }
-  
+
   if (desiredCurrentWordIndex != currentWordIndex ) {
     document.getElementById("input").style.visibility="hidden";
     document.getElementsByClassName("list")[0].style.visibility="hidden"
     const finalResultEl = document.getElementById("final-score");
     const currentStreak = window.localStorage.getItem("currentStreak") || 0;
     if (currentStreak == 0) {
-      finalResultEl.textContent = "Saple " + (desiredCurrentWordIndex + 1) + " - Unsuccessful Today!";
+      finalResultEl.textContent = "Saple " + (currentWordIndex + 1) + " - Unsuccessful Today!";
     }
     else {
-      finalResultEl.textContent = "Saple " + (desiredCurrentWordIndex + 1) + " - You Win!";
+      finalResultEl.textContent = "Saple " + (currentWordIndex + 1) + " - You Win!";
     }
   }
 
@@ -2259,7 +2271,7 @@ let sapleAnswers = [
 
   function showWinningResult() {
     const finalResultEl = document.getElementById("final-score");
-    finalResultEl.textContent = "Saple " + (desiredCurrentWordIndex + 1) + " - You Win!";
+    finalResultEl.textContent = "Saple " + (currentWordIndex + 1) + " - You Win!";
 
     const totalWins = window.localStorage.getItem("totalWins") || 0;
     window.localStorage.setItem("totalWins", Number(totalWins) + 1);
@@ -2270,7 +2282,7 @@ let sapleAnswers = [
 
   function showLosingResult() {
     const finalResultEl = document.getElementById("final-score");
-    finalResultEl.textContent = "Saple " + (desiredCurrentWordIndex + 1) + " - Unsuccessful Today!";;
+    finalResultEl.textContent = "Saple " + (currentWordIndex + 1) + " - Unsuccessful Today!";;
 
     window.localStorage.setItem("currentStreak", 0);
   }
@@ -2463,7 +2475,8 @@ function submitGuess(event) {
 
     if (guessedWordCount >= 6 && guess != pet) {
       setTimeout(() => {
-        alert("The correct pet/food was " + pet);
+        window.confirm("The correct pet/food was " + pet);
+
         showLosingResult();
         updateWordIndex();
         updateTotalGames();
