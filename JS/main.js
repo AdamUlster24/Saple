@@ -3,7 +3,6 @@ let guessedWordCount = 0;
 let haveGuessed = false;
 let now = new Date();
 let firstDate = new Date(2022, 3, 13, 0, 0, 0, 0);
-let desiredCurrentWordIndex = (Math.floor(Number(now - firstDate) / 1000 / 60 / 60 / 24)) % 300;
 let list = [
   {
     name: "Ant",
@@ -2140,6 +2139,7 @@ let sapleAnswers = [
   "Tabby Cat"
 ];
 
+let desiredCurrentWordIndex = (Math.floor(Number(now - firstDate) / 1000 / 60 / 60 / 24)) % sapleAnswers.length;
 let pet = sapleAnswers[currentWordIndex]
 
   initLocalStorage();
@@ -2189,7 +2189,7 @@ let pet = sapleAnswers[currentWordIndex]
   }
 
   function checkIfPlayedYesterday() {
-    if (desiredCurrentWordIndex > currentWordIndex) {
+    if (desiredCurrentWordIndex > currentWordIndex || currentWordIndex >= sapleAnswers.length) {
       currentWordIndex = desiredCurrentWordIndex;
       window.localStorage.setItem("currentWordIndex", currentWordIndex);
       pet = sapleAnswers[currentWordIndex]
