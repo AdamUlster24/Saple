@@ -3,7 +3,7 @@ let guessedWordCount = 0;
 let haveGuessed = false;
 let now = new Date();
 let firstDate = new Date(2022, 3, 13, 0, 0, 0, 0);
-let desiredCurrentWordIndex = (Math.floor(Number(now - firstDate) / 1000 / 60 / 60 / 24)) % 1000;
+let desiredCurrentWordIndex = Math.floor(Number(now - firstDate) / 1000 / 60 / 60 / 24);
 let list = [
   {
     name: "Ant",
